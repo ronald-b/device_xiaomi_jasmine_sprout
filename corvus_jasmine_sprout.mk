@@ -24,10 +24,8 @@
 # Inherit device configuration
 $(call inherit-product, device/xiaomi/jasmine_sprout/device.mk)
 
-# Inherit some common stuff from Project-Awaken
-AWAKEN_BUILD_TYPE := OFFICIAL
-$(call inherit-product, vendor/awaken/config/common.mk)
-$(call inherit-product, vendor/awaken/config/gsm.mk)
+# Inherit Corvus product configuration
+$(call inherit-product, vendor/corvus/config/common_full_phone.mk)
 
 # Gapps
 USE_GAPPS := true
@@ -38,17 +36,30 @@ TARGET_BOOT_ANIMATION_RES := 1080
 # Define first api level
 $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_o_mr1.mk)
 
-# Build Fingerprint
-PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="jasmine-user 9 PKQ1.180904.001 V10.0.9.0.PDIMIXM release-keys"
+# Fingerprint
+BUILD_FINGERPRINT := google/redfin/redfin:11/RQ1A.210205.004/7038034:user/release-keys
+BUILD_DESCRIPTION := redfin-user 11 RQ1A.210205.004 7038034 release-keys
 
-# Density
-TARGET_SCREEN_DENSITY := 400
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.build.fingerprint=$(BUILD_FINGERPRINT)
+
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    PRIVATE_BUILD_DESC="$(BUILD_DESCRIPTION)"
+
+# Faceunlock
+TARGET_FACE_UNLOCK_SUPPORTED := true
+
+# Maintainer
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.corvus.maintainer=RonaldSantos
+
+# OFFICIAL Corvus Build
+RAVEN_LAIR=Official
 
 # Device identifier
 PRODUCT_BRAND := xiaomi
 PRODUCT_MANUFACTURER := Xiaomi
-PRODUCT_NAME := awaken_jasmine_sprout
+PRODUCT_NAME := corvus_jasmine_sprout
 PRODUCT_DEVICE := jasmine_sprout
 PRODUCT_MODEL := Mi A2
 
