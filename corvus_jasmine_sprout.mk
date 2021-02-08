@@ -27,10 +27,6 @@ $(call inherit-product, device/xiaomi/jasmine_sprout/device.mk)
 # Inherit Corvus product configuration
 $(call inherit-product, vendor/corvus/config/common_full_phone.mk)
 
-# Gapps
-USE_GAPPS := true
-IS_PHONE := true
-TARGET_GAPPS_ARCH := arm64
 TARGET_BOOT_ANIMATION_RES := 1080
 
 # Define first api level
@@ -52,9 +48,6 @@ TARGET_FACE_UNLOCK_SUPPORTED := true
 # Maintainer
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.corvus.maintainer=RonaldSantos
-
-# OFFICIAL Corvus Build
-RAVEN_LAIR=Official
 
 # Device identifier
 PRODUCT_BRAND := xiaomi
